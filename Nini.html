@@ -1,0 +1,2223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduWriters | Premium Academic Writing Accounts</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ====== COMPLETE STYLES WITH ALL FEATURES ====== */
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #f72585;
+            --success: #4cc9f0;
+            --warning: #ff9e00;
+            --danger: #ef476f;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 50%, #7209b7 100%);
+            --gradient-light: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+            --gradient-warning: linear-gradient(45deg, #ff9e00, #f72585);
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --radius: 15px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ====== NOTIFICATION SYSTEM ====== */
+        .notification-container {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 350px;
+        }
+
+        .notification {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
+            border-left: 4px solid var(--primary);
+            animation: slideInRight 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .notification.success {
+            border-left-color: var(--success);
+        }
+
+        .notification.warning {
+            border-left-color: var(--warning);
+        }
+
+        .notification.danger {
+            border-left-color: var(--danger);
+        }
+
+        .notification-close {
+            margin-left: auto;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+
+        /* ====== MODAL SYSTEM ====== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius);
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* ====== ENHANCED HEADER WITH CART & USER MENU ====== */
+        header {
+            background: var(--gradient);
+            box-shadow: 0 5px 20px rgba(67, 97, 238, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+
+        .logo span {
+            background: linear-gradient(45deg, #ff9e00, #f72585);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: white;
+            font-size: 22px;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: white;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-warning);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* ====== HERO SECTION ====== */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 180px 0 100px;
+            margin-top: 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none"><path d="M0,0V100H1000V0C750,50 500,100 250,50S0,0,0,0Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.8rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero h1 span {
+            background: linear-gradient(45deg, #4cc9f0, #ff9e00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff9e00, #f72585);
+            color: white;
+            box-shadow: 0 6px 20px rgba(255, 158, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 3px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+        }
+
+        /* ====== ACCOUNTS GRID WITH BUY SECTION ====== */
+        .accounts {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .accounts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .account-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            border-top: 5px solid var(--primary);
+        }
+
+        .account-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(67, 97, 238, 0.2);
+        }
+
+        .account-card.popular {
+            border-top: 5px solid var(--accent);
+            transform: scale(1.05);
+        }
+
+        .account-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #f72585, #ff9e00);
+            color: white;
+            padding: 8px 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 20px;
+            z-index: 2;
+        }
+
+        .account-header {
+            padding: 30px 25px;
+            text-align: center;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+        }
+
+        .account-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .account-header h3 {
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .account-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin: 15px 0;
+        }
+
+        .account-price span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .account-features {
+            padding: 25px;
+            list-style: none;
+        }
+
+        .account-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .account-features li i {
+            color: var(--success);
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
+
+        /* ====== BUY SECTION BELOW EACH ACCOUNT ====== */
+        .buy-section {
+            padding: 0 25px 25px;
+            text-align: center;
+            border-top: 2px dashed #eee;
+            margin-top: 15px;
+            padding-top: 20px;
+        }
+
+        .buy-section h4 {
+            font-size: 1.2rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .buy-section h4 i {
+            color: var(--success);
+        }
+
+        .buy-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .buy-btn {
+            background: var(--gradient-light);
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .buy-btn:hover {
+            background: var(--gradient);
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+        }
+
+        .whatsapp-btn:hover {
+            background: #1da851;
+        }
+
+        .cart-btn {
+            background: #f8f9fa;
+            color: var(--dark);
+            border: 2px solid #eee;
+            width: 100%;
+        }
+
+        .cart-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* ====== PAYMENT SECTION ====== */
+        .payment-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            text-align: center;
+        }
+
+        .payment-box {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .mpesa-icon {
+            font-size: 80px;
+            color: #00b300;
+            margin-bottom: 30px;
+        }
+
+        .payment-box h3 {
+            font-size: 2.2rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+
+        .payment-number {
+            background: linear-gradient(45deg, #00b300, #008000);
+            color: white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: inline-block;
+            margin: 20px 0;
+            box-shadow: 0 8px 20px rgba(0, 179, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .payment-number:hover {
+            transform: scale(1.05);
+        }
+
+        .payment-steps {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            flex: 1;
+            min-width: 200px;
+            max-width: 250px;
+        }
+
+        .step-number {
+            background: var(--gradient);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        /* ====== TESTIMONIALS ====== */
+        .testimonials {
+            padding: 100px 0;
+            background: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 35px;
+            border-radius: 20px;
+            position: relative;
+            border-left: 5px solid var(--accent);
+        }
+
+        .testimonial-card:before {
+            content: '"';
+            font-size: 100px;
+            color: var(--primary);
+            opacity: 0.1;
+            position: absolute;
+            top: -30px;
+            left: 20px;
+            font-family: serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .author-location {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* ====== CONTACT WITH COUNTER ====== */
+        .contact {
+            padding: 100px 0;
+            background: var(--gradient);
+            color: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-details div {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .contact-details i {
+            margin-right: 15px;
+            color: var(--accent);
+            font-size: 1.3rem;
+            width: 30px;
+        }
+
+        .contact-form-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-counter {
+            background: var(--accent);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #ff9e00;
+            display: block;
+            margin: 10px 0;
+        }
+
+        .contact-form input,
+        .contact-form textarea,
+        .contact-form select {
+            width: 100%;
+            padding: 18px;
+            margin-bottom: 25px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 16px;
+        }
+
+        /* ====== DASHBOARD STYLES ====== */
+        .dashboard-modal .modal-content {
+            max-width: 900px;
+            padding: 30px;
+        }
+
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 30px;
+            min-height: 500px;
+        }
+
+        .dashboard-sidebar {
+            background: #f8f9fa;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .user-info {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .user-avatar-large {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+            font-size: 2rem;
+            margin: 0 auto 15px;
+        }
+
+        .user-tier {
+            background: gold;
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .dashboard-nav {
+            list-style: none;
+        }
+
+        .dashboard-nav li {
+            margin-bottom: 10px;
+        }
+
+        .dashboard-nav a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #666;
+            transition: all 0.3s;
+        }
+
+        .dashboard-nav a:hover,
+        .dashboard-nav a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .dashboard-content {
+            background: white;
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: var(--gradient-light);
+            color: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+
+        /* ====== CART MODAL STYLES ====== */
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 20px 0;
+            padding-right: 10px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .cart-item-info h4 {
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .cart-item-remove {
+            color: var(--danger);
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            font-weight: bold;
+            padding: 20px 0;
+            border-top: 2px solid #eee;
+            margin-top: 20px;
+            color: var(--secondary);
+        }
+
+        /* ====== CHECKOUT STEPS ====== */
+        .checkout-steps {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .checkout-steps:before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 10%;
+            right: 10%;
+            height: 2px;
+            background: #eee;
+            z-index: 1;
+        }
+
+        .step-indicator {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+
+        .step-indicator .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #eee;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .step-indicator.active .step-number {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 0 5px rgba(67, 97, 238, 0.2);
+        }
+
+        .step-indicator.completed .step-number {
+            background: var(--success);
+            color: white;
+        }
+
+        /* ====== FOOTER ====== */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 70px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--success);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 25px;
+            font-size: 1.3rem;
+            color: var(--success);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links a i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        .footer-links a:hover {
+            color: var(--success);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* ====== ANIMATIONS ====== */
+        @keyframes slideInRight {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* ====== RESPONSIVE DESIGN ====== */
+        @media (max-width: 992px) {
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .account-card.popular {
+                transform: scale(1);
+            }
+            
+            .account-card.popular:hover {
+                transform: translateY(-15px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .user-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--gradient);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            }
+            
+            .nav-links.active,
+            .user-menu.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+                text-align: center;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+            }
+            
+            .payment-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .accounts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .buy-options {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification System -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    Edu<span>Writers</span>
+                </a>
+                
+                <div class="nav-right">
+                    <ul class="nav-links" id="navLinks">
+                        <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#accounts"><i class="fas fa-user-graduate"></i> Accounts</a></li>
+                        <li><a href="#payment"><i class="fas fa-mobile-alt"></i> M-Pesa</a></li>
+                        <li><a href="#testimonials"><i class="fas fa-comment-alt"></i> Reviews</a></li>
+                        <li><a href="#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                        <li><a href="#" onclick="showDashboard()"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    </ul>
+                    
+                    <div class="user-menu" id="userMenu">
+                        <div class="cart-icon" onclick="showCart()">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </div>
+                        <div class="user-avatar" id="userAvatar" onclick="toggleUserDropdown()">
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="mobile-menu" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Premium <span>Writing Accounts</span> for Kenyan Students</h1>
+            <p>Access the best academic writing tools, plagiarism checkers, and research databases at affordable Kenyan prices. Pay via M-Pesa and receive accounts instantly!</p>
+            
+            <div class="hero-buttons">
+                <a href="#accounts" class="btn btn-primary">
+                    <i class="fas fa-shopping-cart"></i> Browse Accounts
+                </a>
+                <a href="#payment" class="btn btn-secondary">
+                    <i class="fas fa-mobile-alt"></i> Pay via M-Pesa
+                </a>
+            </div>
+            
+            <div style="margin-top: 50px; display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;">
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; font-weight: 800; color: #ff9e00;">1,247+</div>
+                    <div>Accounts Sold</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; font-weight: 800; color: #4cc9f0;">Instant</div>
+                    <div>Delivery</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; font-weight: 800; color: #f72585;">24/7</div>
+                    <div>Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accounts Section -->
+    <section class="accounts" id="accounts">
+        <div class="container">
+            <div class="section-title">
+                <h2>Choose Your Writing Account</h2>
+                <p>All prices in Kenyan Shillings. Pay via M-Pesa and receive accounts within minutes.</p>
+            </div>
+            
+            <div class="accounts-grid" id="accountsGrid">
+                <!-- Accounts loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Section -->
+    <section class="payment-section" id="payment">
+        <div class="container">
+            <div class="payment-box">
+                <div class="mpesa-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3>Pay Instantly via M-Pesa</h3>
+                <p>Send payment to the number below and receive your account details within 5 minutes</p>
+                
+                <div class="payment-number" onclick="copyToClipboard('0768753252')" title="Click to copy">
+                    0768 753 252
+                </div>
+                
+                <p><strong>Business Name:</strong> EDUWRITERS KENYA</p>
+                <p style="color: #666; margin: 15px 0;">After payment, send your email and transaction code to our WhatsApp for instant delivery</p>
+                
+                <div class="payment-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h4>Select Account</h4>
+                        <p>Choose your preferred writing account</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h4>M-Pesa Payment</h4>
+                        <p>Send exact amount to <strong>0768 753 252</strong></p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h4>WhatsApp Details</h4>
+                        <p>Send transaction code & email to same number</p>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h4>Instant Delivery</h4>
+                        <p>Receive login details within 5-10 minutes</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Kenyan Students Say</h2>
+                <p>Trusted by students from universities across Kenya</p>
+            </div>
+            
+            <div class="testimonial-grid" id="testimonialsGrid">
+                <!-- Testimonials loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Limited accounts available this month. Contact us today to secure yours!</p>
+                    
+                    <div class="contact-details">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>Edwinkipkemboi029@gmail.com</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-phone"></i>
+                            <span>0768 753 252 (Call/WhatsApp)</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>890-0023, Nairobi Kenya</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-clock"></i>
+                            <span>24/7 Support Available</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <div class="form-counter">
+                        <span>Limited Accounts Available This Month:</span>
+                        <span class="counter-number" id="counterNumber">30</span>
+                        <span>Hurry! Only a few left</span>
+                    </div>
+                    
+                    <form id="contactForm" onsubmit="submitContactForm(event)">
+                        <input type="text" placeholder="Your Full Name" required>
+                        <input type="email" placeholder="Your Email Address" required>
+                        <input type="tel" placeholder="Phone Number" required>
+                        <select required>
+                            <option value="">Select Account Interest</option>
+                            <option value="grammarly">Grammarly Premium</option>
+                            <option value="turnitin">Turnitin Student</option>
+                            <option value="jstor">JSTOR Research</option>
+                            <option value="platinum">Platinum Bundle</option>
+                        </select>
+                        <textarea rows="4" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Send Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Edu<span style="color: var(--success);">Writers</span></div>
+                    <p>Providing premium academic writing accounts to Kenyan students since 2020.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#accounts"><i class="fas fa-chevron-right"></i> All Accounts</a></li>
+                        <li><a href="#payment"><i class="fas fa-chevron-right"></i> M-Pesa Payment</a></li>
+                        <li><a href="#testimonials"><i class="fas fa-chevron-right"></i> Reviews</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><a href="mailto:Edwinkipkemboi029@gmail.com"><i class="fas fa-envelope"></i> Email</a></li>
+                        <li><a href="tel:0768753252"><i class="fas fa-phone"></i> 0768 753 252</a></li>
+                        <li><i class="fas fa-map-marker-alt"></i> Nairobi, Kenya</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                        <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 EduWriters Kenya. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ====== MODALS ====== -->
+    
+    <!-- Cart Modal -->
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="hideCart()">×</div>
+            <h2><i class="fas fa-shopping-cart"></i> Your Shopping Cart</h2>
+            
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items loaded dynamically -->
+            </div>
+            
+            <div class="cart-total">
+                <span>Total Amount:</span>
+                <span id="cartTotal">KSh 0</span>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px;">
+                <button class="btn" style="background: #eee; color: #333;" onclick="hideCart()">
+                    Continue Shopping
+                </button>
+                <button class="btn btn-primary" onclick="startCheckout()">
+                    <i class="fas fa-lock"></i> Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal" id="paymentModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="closePaymentModal()">×</div>
+            
+            <div style="text-align: center; margin-bottom: 30px;">
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; color: white; font-size: 32px;">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h2 style="color: var(--dark); margin-bottom: 10px;" id="paymentAccountName">Complete Purchase</h2>
+                <p style="color: #666;">Pay via M-Pesa and receive your account instantly</p>
+            </div>
+            
+            <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <div style="width: 32px; height: 32px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">1</div>
+                    <div>
+                        <div style="font-weight: 600;">Send to M-Pesa:</div>
+                        <div style="font-size: 1.8rem; font-weight: 800; color: var(--primary);" id="modalPrice">KSh 0</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                    <div style="width: 32px; height: 32px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">2</div>
+                    <div>
+                        <div style="font-weight: 600;">M-Pesa Number:</div>
+                        <div style="background: linear-gradient(45deg, #00b300, #008000); color: white; padding: 15px; border-radius: 10px; font-size: 1.5rem; font-weight: 700; text-align: center; margin-top: 10px; cursor: pointer;" onclick="copyToClipboard('0768753252')">
+                            0768 753 252
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <div style="width: 32px; height: 32px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600;">3</div>
+                    <div>
+                        <div style="font-weight: 600;">After Payment:</div>
+                        <div style="color: #666;">WhatsApp your transaction code to the same number</div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="btn btn-primary" onclick="copyToClipboard('0768753252')" style="width: 100%; margin-bottom: 15px;">
+                <i class="fas fa-copy"></i> Copy M-Pesa Number
+            </button>
+            
+            <a href="https://wa.me/254768753252" target="_blank" class="btn" style="background: #25D366; color: white; width: 100%; text-align: center; text-decoration: none; padding: 15px; border-radius: 8px;">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Dashboard Modal -->
+    <div class="modal dashboard-modal" id="dashboardModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="hideDashboard()">×</div>
+            
+            <div class="dashboard-container">
+                <div class="dashboard-sidebar">
+                    <div class="user-info">
+                        <div class="user-avatar-large" id="dashboardAvatar">U</div>
+                        <h3 id="dashboardUserName">Guest User</h3>
+                        <p id="dashboardUserEmail">guest@example.com</p>
+                        <div class="user-tier" id="userTier">Bronze Tier</div>
+                    </div>
+                    
+                    <ul class="dashboard-nav">
+                        <li><a href="#" class="active" onclick="showDashboardSection('overview')">
+                            <i class="fas fa-chart-line"></i> Overview
+                        </a></li>
+                        <li><a href="#" onclick="showDashboardSection('orders')">
+                            <i class="fas fa-shopping-bag"></i> My Orders
+                        </a></li>
+                        <li><a href="#" onclick="showDashboardSection('subscriptions')">
+                            <i class="fas fa-sync-alt"></i> Subscriptions
+                        </a></li>
+                        <li><a href="#" onclick="showDashboardSection('referrals')">
+                            <i class="fas fa-gift"></i> Refer & Earn
+                        </a></li>
+                        <li><a href="#" onclick="showDashboardSection('settings')">
+                            <i class="fas fa-cog"></i> Settings
+                        </a></li>
+                        <li><a href="#" onclick="logout()" style="color: var(--danger);">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a></li>
+                    </ul>
+                </div>
+                
+                <div class="dashboard-content">
+                    <div id="dashboardOverview">
+                        <h2 style="margin-bottom: 30px;">Dashboard Overview</h2>
+                        
+                        <div class="dashboard-stats">
+                            <div class="stat-card">
+                                <i class="fas fa-shopping-cart"></i>
+                                <div class="stat-number" id="totalOrders">0</div>
+                                <div>Total Orders</div>
+                            </div>
+                            <div class="stat-card" style="background: var(--gradient-warning);">
+                                <i class="fas fa-coins"></i>
+                                <div class="stat-number" id="totalSpent">KSh 0</div>
+                                <div>Total Spent</div>
+                            </div>
+                            <div class="stat-card" style="background: linear-gradient(45deg, #00b300, #008000);">
+                                <i class="fas fa-gift"></i>
+                                <div class="stat-number" id="referralEarnings">KSh 0</div>
+                                <div>Referral Earnings</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 30px;">
+                            <h3>Recent Orders</h3>
+                            <div id="recentOrders" style="margin-top: 15px;">
+                                <p>No orders yet. <a href="#accounts" onclick="hideDashboard()" style="color: var(--primary); text-decoration: none;">Start shopping!</a></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="dashboardOrders" style="display: none;">
+                        <h2>Order History</h2>
+                        <div id="orderHistory">
+                            <!-- Orders loaded dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div id="dashboardReferrals" style="display: none;">
+                        <h2>Refer & Earn</h2>
+                        <div style="background: #f8f9fa; padding: 25px; border-radius: var(--radius); margin-bottom: 20px;">
+                            <h3 style="margin-bottom: 15px;">Earn KSh 500 for Every Friend Who Buys!</h3>
+                            <p style="margin-bottom: 20px;">Share your referral link and earn commission when friends make purchases.</p>
+                            <div style="background: white; padding: 15px; border-radius: 10px; margin: 15px 0; display: flex; gap: 10px;">
+                                <input type="text" id="referralLink" value="https://eduwriters.co.ke/ref/guest123" readonly style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                                <button class="btn btn-primary" onclick="copyReferralLink()">
+                                    <i class="fas fa-copy"></i> Copy
+                                </button>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-top: 20px;">
+                                <div style="text-align: center; background: white; padding: 15px; border-radius: 10px;">
+                                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary);" id="referralCount">0</div>
+                                    <div>Total Referrals</div>
+                                </div>
+                                <div style="text-align: center; background: white; padding: 15px; border-radius: 10px;">
+                                    <div style="font-size: 2rem; font-weight: bold; color: var(--success);" id="referralSuccess">0</div>
+                                    <div>Successful</div>
+                                </div>
+                                <div style="text-align: center; background: white; padding: 15px; border-radius: 10px;">
+                                    <div style="font-size: 2rem; font-weight: bold; color: var(--warning);" id="referralEarned">KSh 0</div>
+                                    <div>Earnings</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="dashboardSubscriptions" style="display: none;">
+                        <h2>Active Subscriptions</h2>
+                        <div id="activeSubscriptions">
+                            <p>No active subscriptions. <a href="#accounts" onclick="hideDashboard()" style="color: var(--primary); text-decoration: none;">Browse accounts</a></p>
+                        </div>
+                    </div>
+                    
+                    <div id="dashboardSettings" style="display: none;">
+                        <h2>Account Settings</h2>
+                        <form id="settingsForm" style="margin-top: 20px;">
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Full Name</label>
+                                <input type="text" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;" value="Guest User">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Email Address</label>
+                                <input type="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;" value="guest@example.com">
+                            </div>
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600;">Phone Number</label>
+                                <input type="tel" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;" placeholder="07XX XXX XXX">
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Save Changes
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="modal" id="checkoutModal">
+        <div class="modal-content">
+            <div class="modal-close" onclick="hideCheckout()">×</div>
+            <h2><i class="fas fa-check-circle"></i> Complete Checkout</h2>
+            
+            <div class="checkout-steps">
+                <div class="step-indicator active" id="step1Indicator">
+                    <div class="step-number">1</div>
+                    <div>Cart</div>
+                </div>
+                <div class="step-indicator" id="step2Indicator">
+                    <div class="step-number">2</div>
+                    <div>Payment</div>
+                </div>
+                <div class="step-indicator" id="step3Indicator">
+                    <div class="step-number">3</div>
+                    <div>Confirm</div>
+                </div>
+            </div>
+            
+            <div id="checkoutStep1" style="margin-top: 30px;">
+                <h3>Review Your Order</h3>
+                <div id="checkoutCartItems" style="margin: 20px 0;"></div>
+                <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; padding: 20px 0; border-top: 2px solid #eee;">
+                    <span>Total:</span>
+                    <span id="checkoutTotal">KSh 0</span>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 20px;" onclick="nextCheckoutStep()">
+                    Proceed to Payment <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+            
+            <div id="checkoutStep2" style="display: none; margin-top: 30px;">
+                <h3>M-Pesa Payment</h3>
+                <p style="text-align: center; margin: 20px 0;">Send <strong id="checkoutAmount">KSh 0</strong> to:</p>
+                <div style="background: linear-gradient(45deg, #00b300, #008000); color: white; padding: 20px; border-radius: 10px; font-size: 1.8rem; font-weight: 700; text-align: center; margin: 20px 0;">
+                    0768 753 252
+                </div>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <h4>After Payment:</h4>
+                    <p>WhatsApp your transaction code to the same number (0768 753 252) with your email address.</p>
+                </div>
+                
+                <button class="btn btn-primary" style="width: 100%;" onclick="completeOrder()">
+                    <i class="fas fa-check-circle"></i> I've Made Payment
+                </button>
+            </div>
+            
+            <div id="checkoutStep3" style="display: none; margin-top: 30px; text-align: center;">
+                <div style="font-size: 80px; color: var(--success); margin: 20px 0;">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Order Confirmed! 🎉</h3>
+                <p>Your order has been received and will be delivered within 10 minutes.</p>
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <p><strong>Order ID:</strong> <span id="orderId">EDU-0001</span></p>
+                    <p><strong>Delivery:</strong> Check your email and WhatsApp</p>
+                    <p><strong>Support:</strong> WhatsApp 0768 753 252 for assistance</p>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="hideCheckout()">
+                    <i class="fas fa-home"></i> Return to Home
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Chat Widget -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999;">
+        <a href="https://wa.me/254768753252" target="_blank" style="background: #25D366; color: white; border: none; border-radius: 50px; padding: 15px 25px; font-size: 16px; font-weight: bold; cursor: pointer; box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3); display: flex; align-items: center; gap: 10px; text-decoration: none;">
+            <i class="fab fa-whatsapp" style="font-size: 1.5rem;"></i>
+            <span>Chat Now</span>
+        </a>
+    </div>
+
+    <script>
+        // ====== COMPLETE BUSINESS LOGIC ======
+        
+        // Data storage
+        let cart = JSON.parse(localStorage.getItem('eduwriters_cart')) || [];
+        let user = JSON.parse(localStorage.getItem('eduwriters_user')) || {
+            name: "Guest User",
+            email: "guest@example.com",
+            tier: "Bronze",
+            orders: [],
+            referrals: 0,
+            referralEarnings: 0,
+            totalSpent: 0
+        };
+        
+        let accountsCounter = 30;
+        let currentCheckoutStep = 1;
+        
+        // Accounts data
+        const accounts = [
+            {
+                id: 1,
+                name: "Grammarly Premium",
+                price: 3500,
+                period: "month",
+                features: [
+                    "Advanced grammar checking",
+                    "Plagiarism detector",
+                    "Style suggestions",
+                    "1-year access guaranteed",
+                    "Email support"
+                ],
+                icon: "fas fa-file-alt",
+                popular: false
+            },
+            {
+                id: 2,
+                name: "Turnitin Student",
+                price: 4200,
+                period: "6 months",
+                features: [
+                    "Unlimited submissions",
+                    "Similarity reports",
+                    "Peer review access",
+                    "Grading rubric tools",
+                    "24/7 support"
+                ],
+                icon: "fas fa-book",
+                popular: true
+            },
+            {
+                id: 3,
+                name: "Platinum Writer Bundle",
+                price: 12500,
+                period: "year",
+                features: [
+                    "Grammarly + Turnitin",
+                    "5 Database accounts",
+                    "Citation manager",
+                    "AI writing assistant",
+                    "Priority support"
+                ],
+                icon: "fas fa-gem",
+                popular: true
+            },
+            {
+                id: 4,
+                name: "JSTOR Research",
+                price: 8900,
+                period: "year",
+                features: [
+                    "Full academic journal access",
+                    "Unlimited downloads",
+                    "Advanced search filters",
+                    "Citation exports",
+                    "Multi-device access"
+                ],
+                icon: "fas fa-database",
+                popular: false
+            },
+            {
+                id: 5,
+                name: "ScienceDirect Premium",
+                price: 14000,
+                period: "year",
+                features: [
+                    "18 million publications",
+                    "Download PDFs & EPUBs",
+                    "Advanced analytics tools",
+                    "Reference management",
+                    "Institutional-level access"
+                ],
+                icon: "fas fa-microscope",
+                popular: false
+            },
+            {
+                id: 6,
+                name: "AI Writer Pro",
+                price: 5800,
+                period: "month",
+                features: [
+                    "GPT-4 access",
+                    "100,000 words/month",
+                    "40+ writing templates",
+                    "Plagiarism check",
+                    "SEO optimization"
+                ],
+                icon: "fas fa-robot",
+                popular: false
+            }
+        ];
+        
+        // Testimonials data
+        const testimonials = [
+            {
+                name: "Wambui Kamau",
+                location: "University of Nairobi",
+                review: "The Grammarly account I bought helped me improve my thesis writing significantly. I got an A in my final year project!",
+                account: "Grammarly Premium",
+                avatar: "WK"
+            },
+            {
+                name: "James Omondi",
+                location: "Kenyatta University",
+                review: "As a Master's student, I needed JSTOR access. EduWriters delivered within minutes after M-Pesa payment. Lifesaver!",
+                account: "JSTOR Research",
+                avatar: "JO"
+            },
+            {
+                name: "Peter Mutiso",
+                location: "Moi University",
+                review: "Bought the Platinum Bundle for my PhD research. Best investment for any serious researcher in Kenya!",
+                account: "Platinum Bundle",
+                avatar: "PM"
+            }
+        ];
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeApp();
+        });
+        
+        function initializeApp() {
+            displayAccounts();
+            displayTestimonials();
+            updateCartCount();
+            updateAccountCounter();
+            updateDashboardStats();
+        }
+        
+        // ====== ACCOUNTS DISPLAY ======
+        function displayAccounts() {
+            const grid = document.getElementById('accountsGrid');
+            grid.innerHTML = '';
+            
+            accounts.forEach(account => {
+                const card = document.createElement('div');
+                card.className = `account-card ${account.popular ? 'popular' : ''}`;
+                card.innerHTML = `
+                    ${account.popular ? '<div class="popular-tag">MOST POPULAR</div>' : ''}
+                    <div class="account-header">
+                        <div class="account-icon">
+                            <i class="${account.icon}"></i>
+                        </div>
+                        <h3>${account.name}</h3>
+                        <div class="account-price">KSh ${account.price.toLocaleString()}<span>/${account.period}</span></div>
+                    </div>
+                    <ul class="account-features">
+                        ${account.features.map(feature => `<li><i class="fas fa-check"></i> ${feature}</li>`).join('')}
+                    </ul>
+                    
+                    <!-- BUY SECTION BELOW EACH ACCOUNT -->
+                    <div class="buy-section">
+                        <h4><i class="fas fa-shopping-cart"></i> Buy Now</h4>
+                        <div class="buy-options">
+                            <button class="buy-btn" onclick="buyNow(${account.id})">
+                                <i class="fas fa-credit-card"></i> Buy Now
+                            </button>
+                            <button class="buy-btn whatsapp-btn" onclick="buyViaWhatsApp(${account.id})">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </button>
+                        </div>
+                        <button class="buy-btn cart-btn" onclick="addToCart(${account.id})">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        
+        // ====== BUYING FUNCTIONS ======
+        function buyNow(accountId) {
+            const account = accounts.find(a => a.id === accountId);
+            
+            document.getElementById('paymentAccountName').textContent = account.name;
+            document.getElementById('modalPrice').textContent = `KSh ${account.price.toLocaleString()}`;
+            
+            document.getElementById('paymentModal').classList.add('active');
+        }
+        
+        function buyViaWhatsApp(accountId) {
+            const account = accounts.find(a => a.id === accountId);
+            const message = encodeURIComponent(
+                `Hello EduWriters! I want to buy:\n` +
+                `Account: ${account.name}\n` +
+                `Price: KSh ${account.price.toLocaleString()}\n` +
+                `Please send me M-Pesa payment details.`
+            );
+            
+            window.open(`https://wa.me/254768753252?text=${message}`, '_blank');
+        }
+        
+        function addToCart(accountId) {
+            const account = accounts.find(a => a.id === accountId);
+            cart.push(account);
+            updateCartCount();
+            saveCart();
+            showNotification(`Added ${account.name} to cart!`, 'success');
+        }
+        
+        // ====== CART FUNCTIONS ======
+        function showCart() {
+            updateCartDisplay();
+            document.getElementById('cartModal').classList.add('active');
+        }
+        
+        function hideCart() {
+            document.getElementById('cartModal').classList.remove('active');
+        }
+        
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+        }
+        
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            const cartTotal = document.getElementById('cartTotal');
+            const checkoutItems = document.getElementById('checkoutCartItems');
+            const checkoutTotal = document.getElementById('checkoutTotal');
+            const checkoutAmount = document.getElementById('checkoutAmount');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p style="text-align: center; padding: 30px; color: #666;">Your cart is empty</p>';
+                cartTotal.textContent = 'KSh 0';
+                if (checkoutItems) checkoutItems.innerHTML = '<p>No items in cart</p>';
+                if (checkoutTotal) checkoutTotal.textContent = 'KSh 0';
+                if (checkoutAmount) checkoutAmount.textContent = 'KSh 0';
+                return;
+            }
+            
+            let total = 0;
+            cartItems.innerHTML = '';
+            
+            if (checkoutItems) {
+                checkoutItems.innerHTML = '';
+            }
+            
+            cart.forEach((item, index) => {
+                total += item.price;
+                
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div class="cart-item-info">
+                        <h4>${item.name}</h4>
+                        <div style="color: #666; font-size: 14px;">${item.period} access</div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div class="cart-item-price">KSh ${item.price.toLocaleString()}</div>
+                        <div class="cart-item-remove" onclick="removeFromCart(${index})">
+                            <i class="fas fa-trash"></i>
+                        </div>
+                    </div>
+                `;
+                cartItems.appendChild(itemElement);
+                
+                if (checkoutItems) {
+                    const checkoutItem = itemElement.cloneNode(true);
+                    checkoutItems.appendChild(checkoutItem);
+                }
+            });
+            
+            cartTotal.textContent = `KSh ${total.toLocaleString()}`;
+            if (checkoutTotal) checkoutTotal.textContent = `KSh ${total.toLocaleString()}`;
+            if (checkoutAmount) checkoutAmount.textContent = `KSh ${total.toLocaleString()}`;
+        }
+        
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartCount();
+            updateCartDisplay();
+            saveCart();
+            showNotification('Item removed from cart', 'warning');
+        }
+        
+        function saveCart() {
+            localStorage.setItem('eduwriters_cart', JSON.stringify(cart));
+        }
+        
+        // ====== CHECKOUT FUNCTIONS ======
+        function startCheckout() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!', 'warning');
+                return;
+            }
+            
+            hideCart();
+            showCheckout();
+            updateCheckoutStep(1);
+        }
+        
+        function showCheckout() {
+            updateCartDisplay();
+            document.getElementById('checkoutModal').classList.add('active');
+        }
+        
+        function hideCheckout() {
+            document.getElementById('checkoutModal').classList.remove('active');
+            currentCheckoutStep = 1;
+            updateCheckoutStep(1);
+        }
+        
+        function updateCheckoutStep(step) {
+            currentCheckoutStep = step;
+            
+            for (let i = 1; i <= 3; i++) {
+                const indicator = document.getElementById(`step${i}Indicator`);
+                const stepDiv = document.getElementById(`checkoutStep${i}`);
+                
+                if (i === step) {
+                    indicator.className = 'step-indicator active';
+                    if (stepDiv) stepDiv.style.display = 'block';
+                } else if (i < step) {
+                    indicator.className = 'step-indicator completed';
+                    if (stepDiv) stepDiv.style.display = 'none';
+                } else {
+                    indicator.className = 'step-indicator';
+                    if (stepDiv) stepDiv.style.display = 'none';
+                }
+            }
+        }
+        
+        function nextCheckoutStep() {
+            if (currentCheckoutStep < 3) {
+                updateCheckoutStep(currentCheckoutStep + 1);
+            }
+        }
+        
+        function completeOrder() {
+            // Update stats
+            accountsCounter -= cart.length;
+            user.totalSpent += cart.reduce((sum, item) => sum + item.price, 0);
+            
+            // Create order
+            const orderId = `EDU-${Date.now().toString().slice(-6)}`;
+            user.orders.push({
+                id: orderId,
+                items: [...cart],
+                total: cart.reduce((sum, item) => sum + item.price, 0),
+                date: new Date().toLocaleDateString(),
+                status: 'Processing'
+            });
+            
+            document.getElementById('orderId').textContent = orderId;
+            
+            // Save user data
+            saveUser();
+            
+            // Clear cart
+            cart = [];
+            updateCartCount();
+            saveCart();
+            
+            // Update counters
+            updateAccountCounter();
+            updateDashboardStats();
+            
+            // Move to confirmation step
+            updateCheckoutStep(3);
+            
+            showNotification('Order placed successfully! Account details will be sent shortly.', 'success');
+        }
+        
+        // ====== DASHBOARD FUNCTIONS ======
+        function showDashboard() {
+            updateDashboardStats();
+            document.getElementById('dashboardModal').classList.add('active');
+        }
+        
+        function hideDashboard() {
+            document.getElementById('dashboardModal').classList.remove('active');
+        }
+        
+        function updateDashboardStats() {
+            // Update user info
+            document.getElementById('dashboardUserName').textContent = user.name;
+            document.getElementById('dashboardUserEmail').textContent = user.email;
+            document.getElementById('userTier').textContent = user.tier + ' Tier';
+            document.getElementById('dashboardAvatar').textContent = user.name.charAt(0).toUpperCase();
+            
+            // Update stats
+            document.getElementById('totalOrders').textContent = user.orders.length;
+            document.getElementById('totalSpent').textContent = `KSh ${user.totalSpent.toLocaleString()}`;
+            document.getElementById('referralEarnings').textContent = `KSh ${user.referralEarnings.toLocaleString()}`;
+            document.getElementById('referralCount').textContent = user.referrals;
+            document.getElementById('referralSuccess').textContent = user.referrals;
+            document.getElementById('referralEarned').textContent = `KSh ${user.referralEarnings.toLocaleString()}`;
+            
+            // Update recent orders
+            const recentOrders = document.getElementById('recentOrders');
+            const orderHistory = document.getElementById('orderHistory');
+            
+            if (user.orders.length === 0) {
+                recentOrders.innerHTML = '<p>No orders yet. <a href="#accounts" onclick="hideDashboard()" style="color: var(--primary); text-decoration: none;">Start shopping!</a></p>';
+                if (orderHistory) orderHistory.innerHTML = '<p>No order history</p>';
+            } else {
+                recentOrders.innerHTML = user.orders.slice(-3).reverse().map(order => `
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 10px;">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <div>
+                                <strong>${order.id}</strong>
+                                <div style="color: #666; font-size: 14px;">${order.date}</div>
+                            </div>
+                            <div>
+                                <span style="color: var(--success); font-weight: 600;">${order.status}</span>
+                                <div style="color: var(--primary); font-weight: bold;">KSh ${order.total.toLocaleString()}</div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                if (orderHistory) {
+                    orderHistory.innerHTML = user.orders.slice().reverse().map(order => `
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                                <strong>${order.id}</strong>
+                                <span style="color: var(--success); font-weight: 600;">${order.status}</span>
+                            </div>
+                            <div style="color: #666; margin-bottom: 10px;">${order.date}</div>
+                            <div style="border-top: 1px solid #ddd; padding-top: 10px;">
+                                <div style="font-weight: 600; margin-bottom: 5px;">Items:</div>
+                                <div>${order.items.map(item => item.name).join(', ')}</div>
+                                <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                                    <span>Total:</span>
+                                    <strong style="color: var(--primary);">KSh ${order.total.toLocaleString()}</strong>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            }
+        }
+        
+        function showDashboardSection(section) {
+            // Hide all sections
+            ['overview', 'orders', 'subscriptions', 'referrals', 'settings'].forEach(sec => {
+                document.getElementById(`dashboard${sec.charAt(0).toUpperCase() + sec.slice(1)}`).style.display = 'none';
+            });
+            
+            // Show selected section
+            document.getElementById(`dashboard${section.charAt(0).toUpperCase() + section.slice(1)}`).style.display = 'block';
+            
+            // Update active nav
+            document.querySelectorAll('.dashboard-nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+        
+        function logout() {
+            user = {
+                name: "Guest User",
+                email: "guest@example.com",
+                tier: "Bronze",
+                orders: [],
+                referrals: 0,
+                referralEarnings: 0,
+                totalSpent: 0
+            };
+            saveUser();
+            hideDashboard();
+            showNotification('Logged out successfully', 'success');
+        }
+        
+        function saveUser() {
+            localStorage.setItem('eduwriters_user', JSON.stringify(user));
+        }
+        
+        // ====== UTILITY FUNCTIONS ======
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showNotification('M-Pesa number copied to clipboard!', 'success');
+            });
+        }
+        
+        function copyReferralLink() {
+            const link = document.getElementById('referralLink');
+            link.select();
+            navigator.clipboard.writeText(link.value).then(() => {
+                showNotification('Referral link copied!', 'success');
+            });
+        }
+        
+        function closePaymentModal() {
+            document.getElementById('paymentModal').classList.remove('active');
+        }
+        
+        function showNotification(message, type = 'success') {
+            const container = document.getElementById('notificationContainer');
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'exclamation-circle'}"></i>
+                <span>${message}</span>
+                <div class="notification-close" onclick="this.parentElement.remove()">×</div>
+            `;
+            
+            container.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+        
+        function displayTestimonials() {
+            const grid = document.getElementById('testimonialsGrid');
+            grid.innerHTML = '';
+            
+            testimonials.forEach(testimonial => {
+                const card = document.createElement('div');
+                card.className = 'testimonial-card';
+                card.innerHTML = `
+                    <div class="testimonial-text">"${testimonial.review}"</div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">${testimonial.avatar}</div>
+                        <div>
+                            <h4>${testimonial.name}</h4>
+                            <p class="author-location">${testimonial.location}</p>
+                            <p><small>Purchased: ${testimonial.account}</small></p>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+        
+        function updateAccountCounter() {
+            document.getElementById('counterNumber').textContent = accountsCounter;
+            
+            if (accountsCounter <= 10) {
+                document.querySelector('.form-counter').style.background = 'var(--danger)';
+            } else if (accountsCounter <= 20) {
+                document.querySelector('.form-counter').style.background = 'var(--warning)';
+            }
+        }
+        
+        function submitContactForm(event) {
+            event.preventDefault();
+            
+            if (accountsCounter <= 0) {
+                showNotification('Sorry, all accounts are sold out for this month!', 'danger');
+                return;
+            }
+            
+            accountsCounter--;
+            updateAccountCounter();
+            
+            showNotification('Inquiry sent successfully! We will contact you within 24 hours.', 'success');
+            event.target.reset();
+        }
+        
+        // Mobile menu functions
+        function toggleMobileMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const userMenu = document.getElementById('userMenu');
+            
+            navLinks.classList.toggle('active');
+            userMenu.classList.toggle('active');
+        }
+        
+        function toggleUserDropdown() {
+            showDashboard();
+        }
+    </script>
+</body>
+</html>
